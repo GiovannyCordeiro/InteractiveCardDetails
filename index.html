@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png"> -->
+  <title>Frontend Mentor | Interactive card details form</title>
+  <link rel="stylesheet" href="./src/styles/style.css"/>
+
+  <!-- fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <script defer src="/src/script/script.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="wrapper-cards">
+      <div class="card-front">
+        <img src="/src/images/card-logo.svg" alt="logo"/>
+        <div id="cardNum" class="wrapper-numbers">
+          <span id="card-num">0000 0000 0000 0000</span>
+        </div>
+        <div class="personal-data">
+          <p id="name-card">JANE APPLESEED</p>
+          <div class="validate">
+            <p id="moth">00</p> / <p id="year">00</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-back">
+        <p id="cvcCard">099</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrapper-inputs">
+      <form id="form">
+        <div class="completed-form">
+          <img src="/src/images/icon-complete.svg" alt="icon-completed">
+          <h2>THANK YOU!</h2>
+          <p>We've added your card details  </p>
+          <button>Continue</button>
+        </div>
+        <div class="wrapper-itens">
+          <div class="data-name">
+            <p>CARDHOLDER NAME</p>
+            <input class="" id="input-name" onkeyup="changeNameCard(this)" type="text" placeholder="e.g. Jane appleseed">
+            <p class="p-error">Incorrect card name</p>
+          </div>
+          <div class="data-number">
+            <p>CARD NUMBER</p>
+            <input class="" id="input-number" onkeyup="changeValue(this)" data-ls-module="charCounter" maxlength="19" type="tel" placeholder="0000 0000 0000 0000" />
+            <p class="p-error" >Incorrect card digits</p>
+          </div>
+          <div class="specific-data">
+            <div class="wrapper-another">
+              <span>EXP.DATE (MM/YY)</span>
+              <div class="exp-date">
+                <select id="mothInput">
+                  <option>MM</option>
+                  <option>01</option>
+                  <option>02</option>
+                  <option>03</option>
+                  <option>04</option>
+                  <option>05</option>
+                  <option>06</option>
+                  <option>07</option>
+                  <option>08</option>
+                  <option>09</option>
+                  <option>10</option>
+                  <option>11</option>
+                  <option>12</option>
+                </select>
+                <select id="yearInput">
+                  <option>YY</option>
+                  <option>11</option>
+                  <option>12</option>
+                  <option>13</option>
+                  <option>14</option>
+                  <option>16</option>
+                  <option>17</option>
+                  <option>18</option>
+                  <option>19</option>
+                  <option>20</option>
+                  <option>21</option>
+                  <option>22</option>
+                  <option>23</option>
+                </select>
+              </div>
+              <p class="p-error">Data incorrectly</p>
+            </div>
+            <div class="cvc">
+              <span for="CVC">CVC</lab>
+              <input class="" type="tel" name="CVC" id="cvcInput" onkeyup="changeCVC(this)" maxlength="4" placeholder="e.g 123"/>
+              <p class="p-error">Security code incorrectly</p>
+            </div>
+          </div>
+          <input id="confirm" type="submit" value="Confirm"/>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+</html>

@@ -1,0 +1,355 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+:root{
+  --linear-gradient:hsl(249, 99%, 64%) to hsl(278, 94%, 30%);
+  --red-input-errors: hsl(0,100%,66%);
+
+  --White: hsl(0, 0%, 100%);
+  --Light-grayish-violet:hsl(270, 3%, 87%);
+  --Dark-grayish-violet: hsl(279, 6%, 55%);
+  --Very-dark-violet: hsl(278, 68%, 11%);
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+}
+
+header{
+  height: 34.1vh;
+  width: 100%;
+  background:url(/src/images/bg-main-mobile.png) center center;
+  background-size:cover;
+}
+
+header .wrapper-cards{
+  height: inherit;
+  width: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+header .wrapper-cards .card-front{
+  width: 18rem;
+  height: 9.8rem;
+  position:absolute;
+  z-index: 2;
+  top: 52.5%;
+  left:43%;
+  transform: translateX(-50%);
+  background: url(/src/images/bg-card-front.png) center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  border-radius: .5rem;
+  padding: 1.1rem;
+}
+
+header .wrapper-cards .card-front img{
+  width: 3.4rem;
+}
+
+header .wrapper-cards .card-front .wrapper-numbers{
+  margin-top: 2.1rem;
+  width: 100%;
+  
+}
+
+header .wrapper-cards .card-front .wrapper-numbers span{
+  font-size: 1.1rem;
+  white-space: nowrap;
+  color: var(--White);
+}
+
+header .wrapper-cards .card-front .personal-data{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: .75rem;
+  color: var(--Light-grayish-violet);
+  font-size: .8rem;
+}
+
+header .wrapper-cards .card-front .personal-data #name-card{
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+
+header .wrapper-cards .card-front .personal-data .validate{
+  display: flex;
+}
+
+header .wrapper-cards .card-back{
+  width: 17.9rem;
+  height:10rem;
+  position:relative;
+  left: 1.8rem;
+  bottom: .7rem;
+  border-radius: .5rem;
+  background: url(/src/images/bg-card-back.png) center center;
+  background-size: cover;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+header .wrapper-cards .card-back p{
+  font-size: .6rem;
+  padding-left: 70%;
+  color: var(--White);
+}
+
+main{
+  height: 65.9vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+main .wrapper-inputs{
+  padding-top:5rem;
+  /* background: rgb(65, 65, 255); */
+  width: 92%;
+  height: 100%;
+}
+
+main .wrapper-inputs form{
+  width: 100%;
+  height:80%;
+  margin-top: .65rem;
+  padding-left:.5rem;
+}
+
+main .wrapper-inputs form .wrapper-itens{
+  /* display: none; */
+}
+
+main .wrapper-inputs form .wrapper-itens input:focus{
+  outline: 0;
+}
+
+main .wrapper-inputs form .wrapper-itens .error{
+  border: 1px solid var(--red-input-errors);
+}
+
+.p-error{
+  display: none;
+  color: var(--red-input-errors);
+  margin: 0;
+  padding: 0;
+  letter-spacing: 0;
+  margin-bottom: 1.3rem;
+  font-size: .8rem;
+}
+
+
+main .wrapper-inputs .completed-form{
+  width:100%;
+  height:90%;
+  text-align:center;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+
+  display: none;
+}
+
+main .wrapper-inputs .completed-form h2{
+  margin-top: 2.3rem;
+  font-size: 1.7rem;
+  letter-spacing: .3rem;
+}
+
+main .wrapper-inputs .completed-form p{
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  color: var(--Dark-grayish-violet)
+}
+
+main .wrapper-inputs .completed-form button{
+  margin-top: 3.1rem;
+  width: 20rem;
+  height: 3.3rem;
+  border-radius:.5rem;
+  border: 0;
+  background: var(--Very-dark-violet);
+  color: var(--White);
+  font-size: 1rem;
+}
+
+main .wrapper-inputs form p{
+  font-size: .8rem;
+  margin-top: .5rem;
+}
+
+main .wrapper-inputs form input{
+  margin: .6rem 0;
+}
+
+main .wrapper-inputs form input{
+  width: 100%;
+  height: 2.8rem;
+  background:none;
+  border: 1px solid var(--Light-grayish-violet);
+  border-radius: .5rem;
+  padding: 0 .5rem;
+}
+
+main .wrapper-inputs form .specific-data{
+  display: flex;
+  gap: .8rem;
+  margin-top:.5rem;
+  /* background:rgb(181, 181, 181); */
+}
+
+
+main .wrapper-inputs form .specific-data .wrapper-another{
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  /* background: orange; */
+  letter-spacing: .12rem;
+}
+
+
+main .wrapper-inputs form .specific-data .wrapper-another .exp-date{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: .6rem;
+}
+
+main .wrapper-inputs form .specific-data .wrapper-another .exp-date select{
+  width: 50%;
+  height: 2.9rem;
+  border-radius: .3rem;
+  padding: 0 .5rem;
+  margin: .5rem 0;
+  align-self: flex-start;
+  border: 1px solid var(--Light-grayish-violet);
+}
+
+main .wrapper-inputs form .specific-data .wrapper-another{
+  width: 50%;
+  font-size:.8rem;
+}
+
+main .wrapper-inputs form .specific-data .cvc{
+  width: 55%;
+  font-size:.8rem;
+  /* background:green; */
+}
+
+main .wrapper-inputs form #confirm{
+  background: var(--Very-dark-violet);
+  color:var(--White);
+  margin-top: 1rem;
+  height: 3.4rem;
+  font-size:1.1rem;
+  cursor:pointer;
+}
+
+@media screen and (min-width: 1440px){
+  body{
+    flex-direction: row;
+  }
+
+  header{
+    height: 100vh;
+    width: 50.5%;
+  }
+
+  header .wrapper-cards{
+    width: 100%;
+    display: flex;
+  }
+
+  header .wrapper-cards #cardNum{
+    padding-top:1.6rem
+  }
+
+  header .wrapper-cards #card-num{
+    font-size:1.7rem;
+    letter-spacing: .25rem;
+    margin-left: .9rem
+  }
+
+  header .wrapper-cards .card-front{
+    width: 28rem;
+    top: 20.1%;
+    left:80%;
+    height: 15.5rem;
+  }
+
+  header .wrapper-cards .card-front .personal-data{
+    font-size: .9rem;
+    letter-spacing: .13rem;
+    padding: .9rem .8rem;
+  }
+
+  header .wrapper-cards .card-front img{
+    width: 5.5rem;
+    margin-top: 1rem;
+    margin-left: .9rem;
+  }
+
+  header .wrapper-cards .card-back{
+    top: 8.9rem;
+    left: 15rem;
+    width: 28rem;
+    height: 27vh;
+  }
+
+  main{
+    height: 97vh;
+  }
+
+  main .wrapper-inputs{
+    width: 41%;
+    height: 100vh;
+    position: relative;
+    left: 3.65rem;
+    display: flex;
+  }
+
+  main .wrapper-inputs form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 93%;
+  }
+
+  main .wrapper-inputs form p{
+    font-size: .9rem;
+    margin-top: .5rem;
+  }
+
+  main .wrapper-inputs form input{
+    width: 100%;
+    height: 3rem;
+    background:none;
+    border: 1px solid var(--Light-grayish-violet);
+    border-radius: .5rem;
+    padding: 0 .5rem;
+  }
+
+  main .wrapper-inputs form #confirm{
+    margin-top: 2.1rem;
+  }
+
+  header .wrapper-cards .card-back p{
+    font-size: .9rem;
+    letter-spacing: .1rem;
+    padding-left: 66%;
+  }
+  
+
+}
