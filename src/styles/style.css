@@ -20,6 +20,11 @@ body{
   flex-direction: column;
 }
 
+.hidden{
+  display: none;
+  opacity: 0;
+}
+
 header{
   height: 34.1vh;
   width: 100%;
@@ -126,10 +131,6 @@ main .wrapper-inputs form{
   padding-left:.5rem;
 }
 
-main .wrapper-inputs form .wrapper-itens{
-  /* display: none; */
-}
-
 main .wrapper-inputs form .wrapper-itens input:focus{
   outline: 0;
 }
@@ -153,11 +154,10 @@ main .wrapper-inputs .completed-form{
   width:100%;
   height:90%;
   text-align:center;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items:center;
-
-  display: none;
+  justify-content: center;
 }
 
 main .wrapper-inputs .completed-form h2{
@@ -172,7 +172,7 @@ main .wrapper-inputs .completed-form p{
   color: var(--Dark-grayish-violet)
 }
 
-main .wrapper-inputs .completed-form button{
+main .wrapper-inputs .completed-form input{
   margin-top: 3.1rem;
   width: 20rem;
   height: 3.3rem;
@@ -181,6 +181,7 @@ main .wrapper-inputs .completed-form button{
   background: var(--Very-dark-violet);
   color: var(--White);
   font-size: 1rem;
+  cursor: pointer;
 }
 
 main .wrapper-inputs form p{
@@ -234,6 +235,10 @@ main .wrapper-inputs form .specific-data .wrapper-another .exp-date select{
   margin: .5rem 0;
   align-self: flex-start;
   border: 1px solid var(--Light-grayish-violet);
+}
+
+main .wrapper-inputs form .specific-data .wrapper-another .exp-date .error{
+  border: 1px solid var(--red-input-errors);
 }
 
 main .wrapper-inputs form .specific-data .wrapper-another{

@@ -38,28 +38,28 @@
   <main>
     <div class="wrapper-inputs">
       <form id="form">
-        <div class="completed-form">
+        <div id="completedForm" class="completed-form">
           <img src="/src/images/icon-complete.svg" alt="icon-completed">
           <h2>THANK YOU!</h2>
           <p>We've added your card details  </p>
-          <button>Continue</button>
+          <input type="button" value="Continue" id="btnContinue"/>
         </div>
-        <div class="wrapper-itens">
+        <div id="formWrapper" class="wrapper-itens">
           <div class="data-name">
             <p>CARDHOLDER NAME</p>
             <input class="" id="input-name" onkeyup="changeNameCard(this)" type="text" placeholder="e.g. Jane appleseed">
-            <p class="p-error">Incorrect card name</p>
+            <p id="errorNameInput" class="p-error">Incorrect card name</p>
           </div>
           <div class="data-number">
             <p>CARD NUMBER</p>
             <input class="" id="input-number" onkeyup="changeValue(this)" data-ls-module="charCounter" maxlength="19" type="tel" placeholder="0000 0000 0000 0000" />
-            <p class="p-error" >Incorrect card digits</p>
+            <p id="errorNumber" class="p-error" >Incorrect card digits</p>
           </div>
           <div class="specific-data">
             <div class="wrapper-another">
               <span>EXP.DATE (MM/YY)</span>
               <div class="exp-date">
-                <select id="mothInput">
+                <select class="" id="mothInput">
                   <option>MM</option>
                   <option>01</option>
                   <option>02</option>
@@ -74,7 +74,7 @@
                   <option>11</option>
                   <option>12</option>
                 </select>
-                <select id="yearInput">
+                <select class="" id="yearInput">
                   <option>YY</option>
                   <option>11</option>
                   <option>12</option>
@@ -90,12 +90,12 @@
                   <option>23</option>
                 </select>
               </div>
-              <p class="p-error">Data incorrectly</p>
+              <p id="errorSelect" class="p-error">Data incorrectly</p>
             </div>
             <div class="cvc">
               <span for="CVC">CVC</lab>
               <input class="" type="tel" name="CVC" id="cvcInput" onkeyup="changeCVC(this)" maxlength="4" placeholder="e.g 123"/>
-              <p class="p-error">Security code incorrectly</p>
+              <p id="error-cvc" class="p-error">Security code incorrectly</p>
             </div>
           </div>
           <input id="confirm" type="submit" value="Confirm"/>

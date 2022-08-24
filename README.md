@@ -5,4 +5,4 @@
 Vanilla JS, CSS, HTML.
 
 ## Status
-Em desenvolvimento
+Concluido!
