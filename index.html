@@ -47,12 +47,12 @@
         <div id="formWrapper" class="wrapper-itens">
           <div class="data-name">
             <p>CARDHOLDER NAME</p>
-            <input class="" id="input-name" onkeyup="changeNameCard(this)" type="text" placeholder="e.g. Jane appleseed">
+            <input class="" id="input-name" type="text" placeholder="e.g. Jane appleseed">
             <p id="errorNameInput" class="p-error">Incorrect card name</p>
           </div>
           <div class="data-number">
             <p>CARD NUMBER</p>
-            <input class="" id="input-number" onkeyup="changeValue(this)" data-ls-module="charCounter" maxlength="19" type="tel" placeholder="0000 0000 0000 0000" />
+            <input class="" id="input-number"  data-ls-module="charCounter" maxlength="19" type="tel" placeholder="0000 0000 0000 0000" />
             <p id="errorNumber" class="p-error" >Incorrect card digits</p>
           </div>
           <div class="specific-data">
@@ -94,7 +94,7 @@
             </div>
             <div class="cvc">
               <span for="CVC">CVC</lab>
-              <input class="" type="tel" name="CVC" id="cvcInput" onkeyup="changeCVC(this)" maxlength="4" placeholder="e.g 123"/>
+              <input class="" type="tel" name="CVC" id="cvcInput" maxlength="4" placeholder="e.g 123"/>
               <p id="error-cvc" class="p-error">Security code incorrectly</p>
             </div>
           </div>

@@ -15,60 +15,221 @@ const errorName = document.querySelector('#errorNameInput');
 const errorNumber = document.querySelector('#errorNumber');
 const errorSelect = document.querySelector('#errorSelect');
 const errorCVC = document.querySelector('#error-cvc');
-
 const completedForm = document.querySelector('.completed-form');
 const formWrapper = document.querySelector('#formWrapper');
 const btnContinue = document.getElementById('btnContinue');
 
-btnContinue.addEventListener('click', () => {
-  formWrapper.style.display = '';
-  completedForm.style.display = 'none';
-  inputName.value = '';
-  inputNumber.value = '';
-  mothInput.value = 'MM';
-  yearInput.value = 'YY';
-  cvcInput.value = '';
-})
-
-function changeValue (event) {
-  event.value = addCommas(event.value.replace(/\D/g, ''));
-  numCard.textContent = event.value;
+class EventListennerNumber{
+  constructor(elInput, elHTML){
+    this.elInput = elInput;
+    this.elHTML = elHTML;
+  }
+  changeDOMNumber(){
+    this.elInput.addEventListener('keyup', (e) => {
+      e.target.value = this.addCommas(e.target.value.replace(/\D/g, ''));
+      this.elHTML.textContent = e.target.value;
+    });
+  }
+  addCommas(value){
+    return value.replace(/(?=(\d{4})+(?!\d))/g, ' ');
+  }
 }
 
-function addCommas(value) {
-  return value.replace(/(?=(\d{4})+(?!\d))/g, ' ');
+const changeCardInput = new EventListennerNumber(inputNumber, numCard);
+changeCardInput.changeDOMNumber();
+
+
+class EventListennerName {
+  constructor(elInput, elHTML){
+    this.elInput = elInput;
+    this.elHTML = elHTML;
+  }
+
+  changeDomName(){
+    this.elInput.addEventListener('keyup', (e) => {
+      e.target.value = e.target.value.replace(/\d/g, '');
+      this.elHTML.textContent = e.target.value;
+    })
+  }
 }
 
-function changeNameCard(event) {
-  event.value = event.value.replace(/\d/g, '');
-  nameCard.textContent = event.value;
+const changerNameInput = new EventListennerName(inputName,nameCard)
+changerNameInput.changeDomName();
+
+class EventListenerCVC{
+  constructor(elInput, elHTML){
+    this.elInput = elInput;
+    this.elHTML = elHTML;
+  }
+
+  changeDomCVC(){
+    this.elInput.addEventListener('keyup', (e) => {
+      e.target.value = e.target.value.replace(/\D/, '');
+      this.elHTML.textContent = e.target.value;
+    })
+  }
 }
 
-const changeCVC = (e) => {
-  e.value = e.value.replace(/\D/, '')
+const changeCVCInput = new EventListenerCVC(cvcInput, cvcCard);
+changeCVCInput.changeDomCVC();
+
+
+class EventListenerChange{
+  constructor(elInput, elHTML){
+    this.elInput = elInput;
+    this.elHTML = elHTML;
+  }
+
+  changeDOM(){
+    this.elInput.addEventListener(`change`, (e) => {
+      this.elHTML.textContent = e.target.value;
+    })
+  }
 }
 
-mothInput.addEventListener('change', (e) => {
-  monthCard.textContent = e.target.value;
-})
+const changeMothInput = new EventListenerChange(mothInput,monthCard);
+changeMothInput.changeDOM();
 
-yearInput.addEventListener('change',(e) => {
-  yearCard.textContent = e.target.value;
-});
-
-cvcInput.addEventListener('keyup', (e) => {
-  cvcCard.textContent = e.target.value;
-})
+const changeYearInput = new EventListenerChange(yearInput, yearCard);
+changeYearInput.changeDOM();
 
 
+class CheckoutInputs{
+  constructor(name, number, mm, yy, cvc, errorName, errorNumber, errorCVC, errorSelect, inputName, inputNumber, cvcInput,mmInput, yyInput){
+    this.name = name.textContent;
+    this.number = number.textContent;
+    this.mm = mm.textContent;
+    this.yy = yy.textContent;
+    this.cvc = cvc.textContent;
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  checkInputs();
-})
+    this.error = errorName;
+    this.errorSelected = errorSelect;
+    this.errorNumber = errorNumber;
+    this.errorCVC = errorCVC;
 
-function checkInputs() {
-  const nameValue = nameCard.textContent;
+    this.vldNameCard = /^[aA-zZ]+\s[Aa-zZ]+$/gm;
+    this.vldNumber = /^\s\d{1,4}\s\d{1,4}\s\d{1,4}\s\d{1,4}$/gm;
+
+    this.inputName = inputName;
+    this.inputNumber = inputNumber;
+    this.cvcInput = cvcInput;
+    this.mmInput = mmInput;
+    this.yyInput = yyInput;
+
+  }
+
+  conditionals(){
+    let checked = false;
+
+    if(this.vldNameCard.test(this.name)){
+      this.inputName.classList.remove('error');
+      this.error.style.display = 'none';
+    }
+    else{
+      this.inputName.classList.add("error");
+      this.error.style.display = "block";
+    }
+
+    if(this.vldNumber.test(this.number)){
+      this.errorNumber.style.display = 'none';
+      this.inputNumber.classList.remove('error');
+    }
+    else{
+      this.errorNumber.style.display = 'block';
+      this.inputNumber.classList.add('error');
+    }
+
+    if(this.cvc === '' || this.cvc.length < 3){
+      this.cvcInput.classList.add("error");
+      this.errorCVC.style.display = 'block';
+    }
+    else{
+      this.cvcInput.classList.remove('error');
+      this.errorCVC.style.display = 'none';
+    }
+
+    if(this.mm === "00" || mmValue === "MM"){
+      this.mmInput.classList.add('error');
+    }
+    else{
+      this.mmInput.classList.remove('error');
+    }
+
+    if(this.mmInput.className === 'error' || this.yyInput.className === 'error'){
+      this.errorSelected.style.display = 'block';
+    }
+    else{
+      this.errorSelected.style.display = 'none';
+    }
+
+    if(this.yy === '00' || this.yy === 'YY'){
+      this.yyInput.classList.add('error');
+    }
+    else{
+      this.yyInput.classList.remove('error');
+    }
+
+    if(
+      this.inputName.className === 'error' ||
+      this.inputNumber.className === 'error'||
+      this.cvcInput.className === 'error'||
+      this.mmInput.className === 'error'||
+      this.yyInput.className === 'error'
+    ){
+      checked = false
+    }
+    else{
+      checked = true;
+    }
+
+    if(checked ===  true){
+      formWrapper.style.display = 'none';
+      completedForm.style.display = 'flex';
+    }
+  }
+
+  App(){
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      this.conditionals();
+    });
+    
+    btnContinue.addEventListener('click', () => {
+      formWrapper.style.display = '';
+      completedForm.style.display = 'none';
+      inputName.value = '';
+      inputNumber.value = '';
+      mothInput.value = 'MM';
+      yearInput.value = 'YY';
+      cvcInput.value = '';
+    })
+    
+  }
+}
+
+const checkoutForm = new CheckoutInputs(
+  nameCard, 
+  numCard, 
+  monthCard, 
+  yearCard, 
+  cvcInput, 
+  errorName, 
+  errorNumber,
+  errorCVC,
+  errorSelect,
+  inputName,
+  inputNumber,
+  cvcInput,
+  mothInput,
+  yearInput)
+
+  checkoutForm.conditionals();
+
+  checkoutForm.App()
+
+
+/* function checkInputs() {
+  const nameValue = nameCard.textContent; 
   const cardNumber = numCard.textContent;
   const mmValue = monthCard.textContent;
   const yyValue = yearCard.textContent;
@@ -119,7 +280,6 @@ function checkInputs() {
   else{
     yearInput.classList.remove('error');
   }
-  
 
   if(mothInput.className === 'error' || yearInput.className === 'error'){
     errorSelect.style.display = 'block'
@@ -144,4 +304,14 @@ function checkInputs() {
     formWrapper.style.display = 'none';
     completedForm.style.display = 'flex';
   }
-}
+} */
+
+/* btnContinue.addEventListener('click', () => {
+  formWrapper.style.display = '';
+  completedForm.style.display = 'none';
+  inputName.value = '';
+  inputNumber.value = '';
+  mothInput.value = 'MM';
+  yearInput.value = 'YY';
+  cvcInput.value = '';
+}) */
