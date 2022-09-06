@@ -94,141 +94,8 @@ const changeYearInput = new EventListenerChange(yearInput, yearCard);
 changeYearInput.changeDOM();
 
 
-class CheckoutInputs{
-  constructor(name, number, mm, yy, cvc, errorName, errorNumber, errorCVC, errorSelect, inputName, inputNumber, cvcInput,mmInput, yyInput){
-    this.name = name.textContent;
-    this.number = number.textContent;
-    this.mm = mm.textContent;
-    this.yy = yy.textContent;
-    this.cvc = cvc.textContent;
 
-    this.error = errorName;
-    this.errorSelected = errorSelect;
-    this.errorNumber = errorNumber;
-    this.errorCVC = errorCVC;
-
-    this.vldNameCard = /^[aA-zZ]+\s[Aa-zZ]+$/gm;
-    this.vldNumber = /^\s\d{1,4}\s\d{1,4}\s\d{1,4}\s\d{1,4}$/gm;
-
-    this.inputName = inputName;
-    this.inputNumber = inputNumber;
-    this.cvcInput = cvcInput;
-    this.mmInput = mmInput;
-    this.yyInput = yyInput;
-
-  }
-
-  conditionals(){
-    let checked = false;
-
-    if(this.vldNameCard.test(this.name)){
-      this.inputName.classList.remove('error');
-      this.error.style.display = 'none';
-    }
-    else{
-      this.inputName.classList.add("error");
-      this.error.style.display = "block";
-    }
-
-    if(this.vldNumber.test(this.number)){
-      this.errorNumber.style.display = 'none';
-      this.inputNumber.classList.remove('error');
-    }
-    else{
-      this.errorNumber.style.display = 'block';
-      this.inputNumber.classList.add('error');
-    }
-
-    if(this.cvc === '' || this.cvc.length < 3){
-      this.cvcInput.classList.add("error");
-      this.errorCVC.style.display = 'block';
-    }
-    else{
-      this.cvcInput.classList.remove('error');
-      this.errorCVC.style.display = 'none';
-    }
-
-    if(this.mm === "00" || mmValue === "MM"){
-      this.mmInput.classList.add('error');
-    }
-    else{
-      this.mmInput.classList.remove('error');
-    }
-
-    if(this.mmInput.className === 'error' || this.yyInput.className === 'error'){
-      this.errorSelected.style.display = 'block';
-    }
-    else{
-      this.errorSelected.style.display = 'none';
-    }
-
-    if(this.yy === '00' || this.yy === 'YY'){
-      this.yyInput.classList.add('error');
-    }
-    else{
-      this.yyInput.classList.remove('error');
-    }
-
-    if(
-      this.inputName.className === 'error' ||
-      this.inputNumber.className === 'error'||
-      this.cvcInput.className === 'error'||
-      this.mmInput.className === 'error'||
-      this.yyInput.className === 'error'
-    ){
-      checked = false
-    }
-    else{
-      checked = true;
-    }
-
-    if(checked ===  true){
-      formWrapper.style.display = 'none';
-      completedForm.style.display = 'flex';
-    }
-  }
-
-  App(){
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.conditionals();
-    });
-    
-    btnContinue.addEventListener('click', () => {
-      formWrapper.style.display = '';
-      completedForm.style.display = 'none';
-      inputName.value = '';
-      inputNumber.value = '';
-      mothInput.value = 'MM';
-      yearInput.value = 'YY';
-      cvcInput.value = '';
-    })
-    
-  }
-}
-
-const checkoutForm = new CheckoutInputs(
-  nameCard, 
-  numCard, 
-  monthCard, 
-  yearCard, 
-  cvcInput, 
-  errorName, 
-  errorNumber,
-  errorCVC,
-  errorSelect,
-  inputName,
-  inputNumber,
-  cvcInput,
-  mothInput,
-  yearInput)
-
-  checkoutForm.conditionals();
-
-  checkoutForm.App()
-
-
-/* function checkInputs() {
+function checkInputs() {
   const nameValue = nameCard.textContent; 
   const cardNumber = numCard.textContent;
   const mmValue = monthCard.textContent;
@@ -304,9 +171,14 @@ const checkoutForm = new CheckoutInputs(
     formWrapper.style.display = 'none';
     completedForm.style.display = 'flex';
   }
-} */
+}
 
-/* btnContinue.addEventListener('click', () => {
+button.addEventListener('click', e => {
+  e.preventDefault()
+  checkInputs();
+})
+
+btnContinue.addEventListener('click', () => {
   formWrapper.style.display = '';
   completedForm.style.display = 'none';
   inputName.value = '';
@@ -314,4 +186,4 @@ const checkoutForm = new CheckoutInputs(
   mothInput.value = 'MM';
   yearInput.value = 'YY';
   cvcInput.value = '';
-}) */
+})
