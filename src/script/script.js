@@ -1,4 +1,4 @@
-// element dom
+const form = document.querySelector('#form');
 const numCard = document.querySelector('#card-num');
 const nameCard = document.querySelector('#name-card');
 const mothInput = document.querySelector('#mothInput');
@@ -7,7 +7,6 @@ const yearInput = document.querySelector('#yearInput');
 const yearCard = document.querySelector('#year');
 const cvcInput = document.querySelector('#cvcInput');
 const cvcCard = document.querySelector('#cvcCard');
-const form = document.querySelector('#form');
 const button = document.querySelector('#confirm');
 const inputName = document.querySelector('#input-name');
 const inputNumber = document.querySelector('#input-number');
@@ -20,28 +19,23 @@ const completedForm = document.querySelector('.completed-form');
 const formWrapper = document.querySelector('#formWrapper');
 const btnContinue = document.getElementById('btnContinue');
 
-btnContinue.addEventListener('click', () => {
-  formWrapper.style.display = '';
-  completedForm.style.display = 'none';
-  inputName.value = '';
-  inputNumber.value = '';
-  mothInput.value = 'MM';
-  yearInput.value = 'YY';
-  cvcInput.value = '';
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  checkInputs();
 })
 
-function changeValue (event) {
-  event.value = addCommas(event.value.replace(/\D/g, ''));
-  numCard.textContent = event.value;
-}
+inputName.addEventListener("keyup", e => {
+  e.target.value = e.target.value.replace(/\d/g, '');
+  nameCard.textContent = e.target.value;
+})
+
+inputNumber.addEventListener("keyup", e => {
+  e.target.value = addCommas(e.target.value.replace(/\D/g, ''));
+  numCard.textContent = e.target.value;
+})
 
 function addCommas(value) {
   return value.replace(/(?=(\d{4})+(?!\d))/g, ' ');
-}
-
-function changeNameCard(event) {
-  event.value = event.value.replace(/\d/g, '');
-  nameCard.textContent = event.value;
 }
 
 const changeCVC = (e) => {
@@ -58,13 +52,6 @@ yearInput.addEventListener('change',(e) => {
 
 cvcInput.addEventListener('keyup', (e) => {
   cvcCard.textContent = e.target.value;
-})
-
-
-
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  checkInputs();
 })
 
 function checkInputs() {
@@ -145,3 +132,13 @@ function checkInputs() {
     completedForm.style.display = 'flex';
   }
 }
+
+btnContinue.addEventListener('click', () => {
+  formWrapper.style.display = '';
+  completedForm.style.display = 'none';
+  inputName.value = '';
+  inputNumber.value = '';
+  mothInput.value = 'MM';
+  yearInput.value = 'YY';
+  cvcInput.value = '';
+})
