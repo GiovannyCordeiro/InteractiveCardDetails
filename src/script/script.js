@@ -1,15 +1,17 @@
 const form = document.querySelector('#form');
-const numCard = document.querySelector('#card-num');
-const nameCard = document.querySelector('#name-card');
-const mothInput = document.querySelector('#mothInput');
+
 const monthCard = document.querySelector('#moth');
-const yearInput = document.querySelector('#yearInput');
+const numCard = document.querySelector('#card-num');
 const yearCard = document.querySelector('#year');
-const cvcInput = document.querySelector('#cvcInput');
+const nameCard = document.querySelector('#name-card');
 const cvcCard = document.querySelector('#cvcCard');
-const button = document.querySelector('#confirm');
-const inputName = document.querySelector('#input-name');
-const inputNumber = document.querySelector('#input-number');
+
+const mothInput = document.querySelector('#mothInput');
+const yearInput = document.querySelector('#yearInput');
+const cvcInput = document.querySelector('#cvcInput');
+const nameInput = document.querySelector('#input-name');
+const numInput = document.querySelector('#input-number');
+
 const errorName = document.querySelector('#errorNameInput');
 const errorNumber = document.querySelector('#errorNumber');
 const errorSelect = document.querySelector('#errorSelect');
@@ -24,17 +26,17 @@ form.addEventListener('submit', (e) => {
   checkInputs();
 })
 
-inputName.addEventListener("keyup", e => {
-  e.target.value = e.target.value.replace(/\d/g, '');
+nameInput.addEventListener("keyup", e => {
+  e.target.value = e.target.value.replace(/\d/gi, '');
   nameCard.textContent = e.target.value;
 })
 
-inputNumber.addEventListener("keyup", e => {
-  e.target.value = addCommas(e.target.value.replace(/\D/g, ''));
+numInput.addEventListener("keyup", e => {
+  e.target.value = refactoringNum(e.target.value.replace(/\D/g, ''));
   numCard.textContent = e.target.value;
 })
 
-function addCommas(value) {
+function refactoringNum(value) {
   return value.replace(/(?=(\d{4})+(?!\d))/g, ' ');
 }
 
@@ -55,36 +57,30 @@ cvcInput.addEventListener('keyup', (e) => {
 })
 
 function checkInputs() {
-  const nameValue = nameCard.textContent;
-  const cardNumber = numCard.textContent;
-  const mmValue = monthCard.textContent;
-  const yyValue = yearCard.textContent;
-  const cvcValue = cvcInput.value;
-
-  const vldNameCard = /^[aA-zZ]+\s[Aa-zZ]+$/gm;
+  const vldNameCard = /^[A-z]+\s[A-z]+$/gmi;
   const vldNumber = /^\s\d{1,4}\s\d{1,4}\s\d{1,4}\s\d{1,4}$/gm;
 
-  let checked = false;
+  let formClompleted = false;
 
-  if(vldNameCard.test(nameValue)){
-    inputName.classList.remove('error');
+  if(vldNameCard.test(nameInput.value)){
+    nameInput.classList.remove('error');
     errorName.style.display = 'none';
   }
   else{
-    inputName.classList.add('error');
+    nameInput.classList.add('error');
     errorName.style.display = 'block'
   }
 
-  if(vldNumber.test(cardNumber)){
+  if(vldNumber.test(numInput.value)){
     errorNumber.style.display = 'none';
-    inputNumber.classList.remove('error');
+    numInput.classList.remove('error');
   }
   else{
     errorNumber.style.display = 'block';
-    inputNumber.classList.add('error');
+    numInput.classList.add('error');
   }
 
-  if(cvcValue === '' || cvcValue.length < 3){
+  if(cvcInput.value === '' || cvcInput.value.length < 3){
     cvcInput.classList.add('error');
     errorCVC.style.display = 'block'
   }
@@ -93,14 +89,14 @@ function checkInputs() {
     errorCVC.style.display = 'none'
   }
 
-  if(mmValue === '00' || mmValue === 'MM'){
+  if(mothInput.value === '00' || mothInput.value === 'MM'){
     mothInput.classList.add('error');
   }
   else{
     mothInput.classList.remove('error');
   }
 
-  if(yyValue === '00' || yyValue === 'YY'){
+  if(yearInput.value === '00' || yearInput.value === 'YY'){
     yearInput.classList.add('error');
   }
   else{
@@ -116,18 +112,18 @@ function checkInputs() {
   }
 
   if(
-    inputName.className === 'error' || 
-    inputNumber.className === 'error' || 
+    nameInput.className === 'error' || 
+    numInput.className === 'error' || 
     cvcInput.className === 'error' || 
     mothInput.className === 'error' || 
     yearInput.className === 'error'){
-    checked = false
+    formClompleted = false
   }
   else{
-    checked = true;
+    formClompleted = true;
   }
 
-  if(checked === true){
+  if(formClompleted === true){
     formWrapper.style.display = 'none';
     completedForm.style.display = 'flex';
   }
@@ -136,8 +132,8 @@ function checkInputs() {
 btnContinue.addEventListener('click', () => {
   formWrapper.style.display = '';
   completedForm.style.display = 'none';
-  inputName.value = '';
-  inputNumber.value = '';
+  nameInput.value = '';
+  numInput.value = '';
   mothInput.value = 'MM';
   yearInput.value = 'YY';
   cvcInput.value = '';
