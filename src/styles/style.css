@@ -357,4 +357,11 @@ main .wrapper-inputs form #confirm{
   }
   
 
+  .attribution{
+    position: absolute;
+    left: 50%;
+    top: 90%;
+    transform: translate(-50%);
+  }
+
 }
